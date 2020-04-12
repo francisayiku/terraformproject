@@ -25,6 +25,6 @@ resource "aws_route53_record" "database" {
   name    = "mydatabase.${var.DnsZoneName}"
   type    = "A"
   ttl     = "300"
-  records = "[aws_instance.database.private_ip]"
+  records = ["aws_instance.database.private_ip"]
 }
 

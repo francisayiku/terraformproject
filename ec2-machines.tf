@@ -3,7 +3,7 @@ resource "aws_instance" "phpapp" {
   instance_type               = "t2.micro"
   associate_public_ip_address = "true"
   subnet_id                   = "aws_subnet.PublicAZA.id"
-  vpc_security_group_ids      = "[aws_security_group.FrontEnd.id]"
+  vpc_security_group_ids      = ["aws_security_group.FrontEnd.id"]
   key_name                    = "${var.key_name}"
   tags = {
     Name = "phpapp"
@@ -16,7 +16,7 @@ resource "aws_instance" "database" {
   instance_type               = "t2.micro"
   associate_public_ip_address = "false"
   subnet_id                   = "aws_subnet.PrivateAZA.id"
-  vpc_security_group_ids      = "[aws_security_group.Database.id]"
+  vpc_security_group_ids      = ["aws_security_group.Database.id"]
   key_name                    = "${var.key_name}"
   tags = {
     Name = "database"

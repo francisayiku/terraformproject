@@ -36,7 +36,7 @@ resource "aws_security_group" "Database" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "TCP"
-    security_groups = "[aws_security_group.FrontEnd.id]"
+    security_groups = ["aws_security_group.FrontEnd.id"]
   }
   ingress {
     from_port   = 22
