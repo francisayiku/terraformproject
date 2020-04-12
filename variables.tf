@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "AmiLinux" {
-  type = map(string)
+  type = "map"
   default = {
     us-east-1 = "ami-00068cd7555f543d5"
     us-west-2 = "ami-0c5204531f799e0c6"
@@ -45,4 +45,3 @@ variable "DnsZoneName" {
   default     = "ronzy.internal"
   description = "the internal dns name"
 }
-

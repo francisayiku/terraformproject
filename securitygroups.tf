@@ -4,7 +4,7 @@ resource "aws_security_group" "FrontEnd" {
     Name = "FrontEnd"
   }
   description = "Only HTTP Connection inbound"
-  vpc_id      = aws_vpc.ronzymain.id
+  vpc_id      = "aws_vpc.ronzymain.id"
   ingress {
     from_port   = 80
     to_port     = 80
@@ -31,12 +31,12 @@ resource "aws_security_group" "Database" {
     Name = "Database"
   }
   description = "Only tcp Connection Inbound"
-  vpc_id      = aws_vpc.ronzymain.id
+  vpc_id      = "aws_vpc.ronzymain.id"
   ingress {
     from_port       = 3306
     to_port         = 3306
     protocol        = "TCP"
-    security_groups = [aws_security_group.FrontEnd.id]
+    security_groups = "[aws_security_group.FrontEnd.id]"
   }
   ingress {
     from_port   = 22
@@ -51,4 +51,3 @@ resource "aws_security_group" "Database" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-

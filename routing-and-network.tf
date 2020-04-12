@@ -2,14 +2,14 @@ data "aws_availability_zones" "available" {
 }
 
 resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.ronzymain.id
+  vpc_id = "aws_vpc.ronzymain.id"
   tags = {
     Name = "ronzy internet gw"
   }
 }
 
 resource "aws_network_acl" "all" {
-  vpc_id = aws_vpc.ronzymain.id
+  vpc_id = "aws_vpc.ronzymain.id"
   egress {
     protocol   = "-1"
     rule_no    = 2
@@ -32,24 +32,24 @@ resource "aws_network_acl" "all" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.ronzymain.id
+  vpc_id = "aws_vpc.ronzymain.id"
   tags = {
     Name = "Public"
   }
   route {
     cidr_block     = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+    gateway_id = "aws_internet_gateway.gw.id"
   }
 }
 
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.ronzymain.id
+  vpc_id = "aws_vpc.ronzymain.id"
   tags = {
     Name = "Private"
   }
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.PublicAZA.id
+    nat_gateway_id = "aws_nat_gateway.PublicAZA.id"
   }
 }
 
@@ -58,8 +58,7 @@ resource "aws_eip" "forNat" {
 }
 
 resource "aws_nat_gateway" "PublicAZA" {
-  allocation_id = aws_eip.forNat.id
-  subnet_id     = aws_subnet.PublicAZA.id
-  depends_on    = [aws_internet_gateway.gw]
+  allocation_id = "${aws_eip.forNat.id}"
+  subnet_id     = "${aws_subnet.PublicAZA.id}"
+  depends_on    = ["aws_internet_gateway.gw"]
 }
-
