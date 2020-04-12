@@ -1,6 +1,11 @@
 variable "region" {
   default = "us-east-1"
 }
+variable "aws_profile" {
+  type    = "string"
+  default = "default"
+}
+
 
 variable "AmiLinux" {
   type = "map"
