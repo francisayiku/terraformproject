@@ -2,14 +2,5 @@
 terraform {
   required_version = ">= 0.12"
 }
-terraform {
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "ronzy"
-    token = "IJzfDAYtxDzW9A.atlasv1.pGi1Wu3OkiOYwWIHfzfUa4lrTEVSlWnorBqs8Tv6zBZWUALnJ38dkH9gZEjhH3v72PY"
-
-    workspaces {
-      name = "ronzy-terraformproject"
-    }
-  }
-}
+  backend "remote" {}
+    
